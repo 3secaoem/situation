@@ -84,10 +84,10 @@
             </select>
             
             <label for="bombeiro1">Responsável pelo anúncio:</label>
-            <input type="text" id="bombeiro1" placeholder="Ex.: 1º Ten. Silva">
+            <input type="text" id="bombeiro1" placeholder="1º Ten. Silva">
             
             <label for="bombeiro2">Auxiliar:</label>
-            <input type="text" id="bombeiro2" placeholder="Ex.: Cb. Santos">
+            <input type="text" id="bombeiro2" placeholder="Cb. Santos">
         </div>
 
         <div class="section">
@@ -101,18 +101,42 @@
 
     <script>
         function imprimirRelatorio() {
-            const content = document.querySelector('.container').outerHTML;
+            // Coleta o conteúdo do formulário com os valores preenchidos
+            const equipe = document.getElementById('equipe').value;
+            const bombeiro1 = document.getElementById('bombeiro1').value;
+            const bombeiro2 = document.getElementById('bombeiro2').value;
+            const alertas = document.getElementById('alertas').value;
+
+            // Cria o conteúdo HTML para impressão
+            const content = `
+                <div class="container">
+                    <header>
+                        <img src="https://github.com/3secaoem/situation/blob/main/logo_cbmmg_v2.png?raw=true" alt="Logo do Corpo de Bombeiros">
+                        <h1>Sala de Situação - Período Chuvoso</h1>
+                    </header>
+                    <div class="section">
+                        <h2>Efetivo - Sala de Situação</h2>
+                        <p><strong>Equipe:</strong> ${equipe}</p>
+                        <p><strong>Responsável pelo anúncio:</strong> ${bombeiro1}</p>
+                        <p><strong>Auxiliar:</strong> ${bombeiro2}</p>
+                    </div>
+                    <div class="section">
+                        <h2>Alertas para as Unidades Operacionais</h2>
+                        <p>${alertas}</p>
+                    </div>
+                </div>`;
+
             const style = `<style>
                 * { font-family: Arial, sans-serif; }
                 header { text-align: center; margin-bottom: 20px; }
                 header img { width: 80px; }
                 header h1 { font-size: 24px; margin: 0; }
                 .section { margin-bottom: 20px; }
-                label { font-weight: bold; display: block; margin-bottom: 5px; }
-                input, select, textarea { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+                p { margin: 5px 0; }
                 button { display: none; }
             </style>`;
 
+            // Abre uma nova janela para impressão
             const win = window.open('', '', 'height=700,width=700');
             win.document.write('<html><head><title>Relatório de Serviço</title>' + style + '</head><body>' + content + '</body></html>');
             win.document.close();
@@ -121,4 +145,5 @@
     </script>
 </body>
 </html>
+
 
