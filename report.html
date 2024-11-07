@@ -38,16 +38,13 @@
             display: block;
             margin-bottom: 5px;
         }
-        input, textarea {
+        input, select, textarea {
             width: 100%;
             padding: 8px;
             margin-bottom: 10px;
             border: 1px solid #ddd;
             border-radius: 4px;
             box-sizing: border-box;
-        }
-        .alert-input {
-            margin-bottom: 10px;
         }
         button {
             width: 100%;
@@ -74,6 +71,18 @@
 
         <div class="section">
             <h2>Efetivo - Sala de Situação</h2>
+            <label for="equipe">Equipe:</label>
+            <select id="equipe">
+                <option value="Alfa">Alfa</option>
+                <option value="Bravo">Bravo</option>
+                <option value="Charlie">Charlie</option>
+                <option value="Delta">Delta</option>
+                <option value="Echo">Echo</option>
+                <option value="Foxtrot">Foxtrot</option>
+                <option value="Golf">Golf</option>
+                <option value="Hotel">Hotel</option>
+            </select>
+            
             <label for="bombeiro1">Responsável pelo anúncio:</label>
             <input type="text" id="bombeiro1" placeholder="Ex.: 1º Ten. Silva">
             
@@ -100,7 +109,7 @@
                 header h1 { font-size: 24px; margin: 0; }
                 .section { margin-bottom: 20px; }
                 label { font-weight: bold; display: block; margin-bottom: 5px; }
-                input, textarea { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+                input, select, textarea { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
                 button { display: none; }
             </style>`;
 
@@ -112,3 +121,4 @@
     </script>
 </body>
 </html>
+
