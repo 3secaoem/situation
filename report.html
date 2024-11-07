@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Serviço - Corpo de Bombeiros</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f2f2f2;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        header img {
+            width: 80px;
+        }
+        header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .alert-input {
+            margin-bottom: 10px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="https://via.placeholder.com/80" alt="Logo do Corpo de Bombeiros">
+            <h1>Relatório de Serviço</h1>
+        </header>
+
+        <div class="section">
+            <h2>Informações do Efetivo</h2>
+            <label for="bombeiro1">Número, Graduação e Nome do Bombeiro 1:</label>
+            <input type="text" id="bombeiro1" placeholder="Ex.: 1234 - Sgt. Silva">
+            
+            <label for="bombeiro2">Número, Graduação e Nome do Bombeiro 2:</label>
+            <input type="text" id="bombeiro2" placeholder="Ex.: 5678 - Cb. Santos">
+        </div>
+
+        <div class="section">
+            <h2>Alertas para as Unidades Operacionais</h2>
+            <label for="alertas">Informe os alertas:</label>
+            <textarea id="alertas" rows="4" placeholder="Ex.: Alerta para Unidade X devido a previsão de chuvas fortes"></textarea>
+        </div>
+
+        <button onclick="imprimirRelatorio()">Imprimir Relatório em PDF</button>
+    </div>
+
+    <script>
+        function imprimirRelatorio() {
+            const content = document.querySelector('.container').outerHTML;
+            const style = `<style>
+                * { font-family: Arial, sans-serif; }
+                header { text-align: center; margin-bottom: 20px; }
+                header img { width: 80px; }
+                header h1 { font-size: 24px; margin: 0; }
+                .section { margin-bottom: 20px; }
+                label { font-weight: bold; display: block; margin-bottom: 5px; }
+                input, textarea { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+                button { display: none; }
+            </style>`;
+
+            const win = window.open('', '', 'height=700,width=700');
+            win.document.write('<html><head><title>Relatório de Serviço</title>' + style + '</head><body>' + content + '</body></html>');
+            win.document.close();
+            win.print();
+        }
+    </script>
+</body>
+</html>
