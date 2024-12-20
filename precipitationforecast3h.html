@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precipitação nas Próximas 3 Horas</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #202124;
+            color: white;
+            width: 100%;
+            padding: 20px 0;
+            text-align: center;
+        }
+        header img {
+            width: 100px;
+            margin-bottom: 10px;
+        }
+        main {
+            margin: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            color: #0072F0;
+            font-size: 24px;
+            text-align: center;
+        }
+        select, button {
+            margin-top: 10px;
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #808080;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #1F69AC;
+        }
+        .data {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        .data div {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://example.com/logo.png" alt="Logo">
+        <h1>Precipitação nas Próximas 3 Horas</h1>
+    </header>
+    <main>
+        <label for="municipio">Selecione o município:</label>
+        <select id="municipio">
+            <option value="-18.4833,-47.3925">Abadia dos Dourados</option>
+            <option value="-19.1522,-45.4557">Abaeté</option>
+            <option value="-20.3001,-42.4747">Abre Campo</option>
+            <option value="-20.3595,-43.1442">Acaiaca</option>
+<option value="-19.0673,-42.5495">Açucena</option>
+<option value="-17.9918,-42.381">Água Boa</option>
+<option value="-20.058,-48.1073">Água Comprida</option>
+<option value="-20.9444,-45.3918">Aguanil</option>
+<option value="-17.0807,-40.9387">Águas Formosas</option>
+<option value="-15.7466,-41.4584">Águas Vermelhas</option>
+<option value="-19.5012,-41.075">Aimorés</option>
+<option value="-21.9741,-44.6046">Aiuruoca</option>
+<option value="-22.1715,-44.6417">Alagoa</option>
+<option value="-22.2022,-46.6143">Albertina</option>
+<option value="-21.8802,-42.718">Além Paraíba</option>
+<option value="-21.4261,-45.9481">Alfenas</option>
+<option value="-21.154,-43.7721">Alfredo Vasconcelos</option>
+<option value="-16.1789,-40.6945">Almenara</option>
+<option value="-18.9745,-41.9704">Alpercata</option>
+<option value="-20.8635,-46.3882">Alpinópolis</option>
+<option value="-21.2492,-46.1391">Alterosa</option>
+<option value="-20.4315,-41.8741">Alto Caparaó</option>
+<option value="-21.0286,-43.4071">Alto Rio Doce</option>
+<option value="-19.4179,-41.7321">Alvarenga</option>
+<option value="-20.1102,-43.0539">Alvinópolis</option>
+<option value="-18.7338,-43.3642">Alvorada de Minas</option>
+<option value="-20.5055,-42.8012">Amparo do Serra</option>
+<option value="-22.07,-46.5728">Andradas</option>
+<option value="-15.9693,-41.4951">Cachoeira de Pajeú</option>
+<option value="-21.7416,-44.3121">Andrelândia</option>
+<option value="-17.726,-42.273">Angelândia</option>
+<option value="-21.3215,-43.7455">Antônio Carlos</option>
+<option value="-19.6538,-42.8783">Antônio Dias</option>
+<option value="-21.0197,-42.1113">Antônio Prado de Minas</option>
+<option value="-19.196,-44.2497">Araçaí</option>
+<option value="-21.3451,-43.374">Aracitaba</option>
+<option value="-16.8528,-42.0641">Araçuaí</option>
+<option value="-18.646,-48.1938">Araguari</option>
+<option value="-21.9107,-44.2559">Arantina</option>
+<option value="-20.6691,-42.5182">Araponga</option>
+<option value="-18.4362,-49.1851">Araporã</option>
+<option value="-19.035,-46.1549">Arapuá</option>
+<option value="-19.9451,-45.1676">Araújos</option>
+<option value="-19.585,-46.9416">Araxá</option>
+<option value="-21.3595,-46.9405">Arceburgo</option>
+<option value="-20.2868,-45.5377">Arcos</option>
+<option value="-21.3577,-46.1425">Areado</option>
+<option value="-21.6088,-42.8295">Argirita</option>
+<option value="-17.867,-42.557">Aricanduva</option>
+<option value="-15.9109,-46.1081">Arinos</option>
+<option value="-21.3189,-42.8576">Astolfo Dutra</option>
+<option value="-18.0443,-41.1152">Ataléia</option>
+<option value="-18.1002,-44.2659">Augusto de Lima</option>
+<option value="-21.9575,-44.8878">Baependi</option>
+<option value="-19.288,-43.957">Baldim</option>
+<option value="-20.0171,-45.9758">Bambuí</option>
+<option value="-15.8839,-40.5611">Bandeira</option>
+<option value="-21.7313,-46.3837">Bandeira do Sul</option>
+<option value="-19.9394,-43.4759">Barão de Cocais</option>
+<option value="-21.2449,-42.2375">Barão de Monte Alto</option>
+<option value="-21.2219,-43.7706">Barbacena</option>
+<option value="-20.2873,-43.0405">Barra Longa</option>
+<option value="-21.1911,-43.9724">Barroso</option>
+<option value="-19.8307,-43.0925">Bela Vista de Minas</option>
+<option value="-21.9445,-43.4088">Belmiro Braga</option>
+<option value="-19.913,-43.9409">Belo Horizonte</option>
+<option value="-19.2204,-42.4832">Belo Oriente</option>
+<option value="-20.4082,-44.0278">Belo Vale</option>
+<option value="-16.9522,-42.4645">Berilo</option>
+<option value="-17.0595,-40.5803">Bertópolis</option>
+<option value="-15.6105,-41.7435">Berizal</option>
+<option value="-19.9673,-44.2011">Betim</option>
+<option value="-21.6024,-43.7577">Bias Fortes</option>
+<option value="-21.7236,-43.0563">Bicas</option>
+<option value="-18.7696,-45.4981">Biquinhas</option>
+<option value="-21.0932,-45.5616">Boa Esperança</option>
+<option value="-22.1702,-44.3976">Bocaina de Minas</option>
+<option value="-17.114,-43.8108">Bocaiúva</option>
+<option value="-19.7302,-45.2517">Bom Despacho</option>
+<option value="-21.9484,-44.1889">Bom Jardim de Minas</option>
+<option value="-21.0153,-46.5178">Bom Jesus da Penha</option>
+<option value="-19.7067,-43.4743">Bom Jesus do Amparo</option>
+<option value="-19.8363,-42.318">Bom Jesus do Galho</option>
+<option value="-22.468,-46.1444">Bom Repouso</option>
+<option value="-21.0334,-44.7541">Bom Sucesso</option>
+<option value="-20.3307,-44.2369">Bonfim</option>
+<option value="-16.566,-45.9881">Bonfinópolis de Minas</option>
+<option value="-15.3214,-44.7572">Bonito de Minas</option>
+<option value="-22.2712,-46.1657">Borda da Mata</option>
+<option value="-21.6416,-46.3914">Botelhos</option>
+<option value="-16.8662,-43.0089">Botumirim</option>
+<option value="-16.9976,-46.0123">Brasilândia de Minas</option>
+<option value="-16.2119,-44.428">Brasília de Minas</option>
+<option value="-20.8424,-43.2409">Brás Pires</option>
+<option value="-19.0566,-42.7103">Braúnas</option>
+<option value="-22.4705,-45.6134">Brazópolis</option>
+<option value="-20.1515,-44.201">Brumadinho</option>
+<option value="-22.4388,-46.3495">Bueno Brandão</option>
+<option value="-17.8749,-44.1779">Buenópolis</option>
+<option value="-19.4235,-42.2555">Bugre</option>
+<option value="-15.6223,-46.4225">Buritis</option>
+<option value="-17.351,-44.962">Buritizeiro</option>
+<option value="-16.027,-47.0879">Cabeceira Grande</option>
+<option value="-21.4704,-46.3922">Cabo Verde</option>
+<option value="-19.525,-44.454">Cachoeira da Prata</option>
+<option value="-22.3516,-45.7813">Cachoeira de Minas</option>
+<option value="-18.5166,-49.5043">Cachoeira Dourada</option>
+<option value="-19.2975,-44.4192">Caetanópolis</option>
+<option value="-19.8831,-43.6707">Caeté</option>
+<option value="-20.6961,-41.9296">Caiana</option>
+<option value="-20.7908,-42.7929">Cajuri</option>
+<option value="-21.9188,-46.3847">Caldas</option>
+<option value="-20.6298,-45.1597">Camacho</option>
+<option value="-22.752,-46.1498">Camanducaia</option>
+<option value="-22.612,-46.0576">Cambuí</option>
+<option value="-21.8545,-45.29">Cambuquira</option>
+<option value="-18.2432,-41.7359">Campanário</option>
+<option value="-21.8365,-45.4008">Campanha</option>
+<option value="-21.7083,-46.2385">Campestre</option>
+<option value="-19.5343,-49.4876">Campina Verde</option>
+<option value="-16.506,-44.8114">Campo Azul</option>
+<option value="-20.8937,-45.2703">Campo Belo</option>
+<option value="-21.1132,-45.8277">Campo do Meio</option>
+<option value="-19.7635,-48.572">Campo Florido</option>
+<option value="-19.6946,-46.169">Campos Altos</option>
+<option value="-21.2375,-45.7573">Campos Gerais</option>
+<option value="-20.6874,-42.617">Canaã</option>
+<option value="-18.7217,-49.204">Canápolis</option>
+<option value="-21.0237,-45.1804">Cana Verde</option>
+<option value="-20.7697,-45.2768">Candeias</option>
+<option value="-18.5228,-42.6253">Cantagalo</option>
+<option value="-20.5294,-41.9064">Caparaó</option>
+<option value="-20.9184,-43.6223">Capela Nova</option>
+<option value="-17.6893,-42.5151">Capelinha</option>
+<option value="-20.6168,-47.0575">Capetinga</option>
+<option value="-19.5475,-44.1307">Capim Branco</option>
+<option value="-18.6867,-49.571">Capinópolis</option>
+<option value="-19.0753,-41.8618">Capitão Andrade</option>
+<option value="-16.327,-43.7088">Capitão Enéas</option>
+<option value="-20.6168,-46.0496">Capitólio</option>
+<option value="-20.1708,-42.2687">Caputira</option>
+<option value="-17.1866,-41.7007">Caraí</option>
+<option value="-20.8711,-43.7421">Caranaíba</option>
+<option value="-20.9571,-43.8114">Carandaí</option>
+<option value="-20.7348,-42.0317">Carangola</option>
+<option value="-19.7873,-42.1296">Caratinga</option>
+<option value="-17.526,-43.014">Carbonita</option>
+<option value="-22.0429,-45.6964">Careaçu</option>
+<option value="-17.6978,-40.7726">Carlos Chagas</option>
+<option value="-19.0882,-43.1386">Carmésia</option>
+<option value="-21.4638,-45.2204">Carmo da Cachoeira</option>
+<option value="-20.558,-44.8739">Carmo da Mata</option>
+<option value="-22.1208,-45.1311">Carmo de Minas</option>
+<option value="-20.1916,-44.7668">Carmo do Cajuru</option>
+<option value="-18.9979,-46.3134">Carmo do Paranaíba</option>
+<option value="-20.9741,-46.1153">Carmo do Rio Claro</option>
+<option value="-20.54,-44.6339">Carmópolis de Minas</option>
+<option value="-19.6992,-50.6899">Carneirinho</option>
+<option value="-21.4902,-44.645">Carrancas</option>
+<option value="-21.774,-45.8425">Carvalhópolis</option>
+<option value="-22.0005,-44.4635">Carvalhos</option>
+<option value="-20.793,-43.9347">Casa Grande</option>
+<option value="-18.5773,-47.8722">Cascalho Rico</option>
+<option value="-20.5835,-46.9205">Cássia</option>
+<option value="-21.132,-44.4733">Conceição da Barra de Minas</option>
+<option value="-21.3929,-42.69">Cataguases</option>
+<option value="-20.0739,-43.4065">Catas Altas</option>
+<option value="-20.6906,-43.4942">Catas Altas da Noruega</option>
+<option value="-17.3023,-41.528">Catuji</option>
+<option value="-15.362,-42.9631">Catuti</option>
+<option value="-21.9757,-44.9322">Caxambu</option>
+<option value="-19.1485,-45.7123">Cedro do Abaeté</option>
+<option value="-18.7617,-41.3147">Central de Minas</option>
+<option value="-18.5857,-49.2018">Centralina</option>
+<option value="-21.6737,-43.2154">Chácara</option>
+<option value="-20.0458,-41.6901">Chalé</option>
+<option value="-17.0886,-42.5395">Chapada do Norte</option>
+<option value="-15.2981,-45.6242">Chapada Gaúcha</option>
+<option value="-22.0001,-43.062">Chiador</option>
+<option value="-20.9031,-43.3633">Cipotânea</option>
+<option value="-20.3975,-47.2772">Claraval</option>
+<option value="-17.08,-44.209">Claro dos Poções</option>
+<option value="-20.4441,-44.7677">Cláudio</option>
+<option value="-20.854,-42.8012">Coimbra</option>
+<option value="-18.234,-42.84">Coluna</option>
+<option value="-19.698,-49.081">Comendador Gomes</option>
+<option value="-16.2967,-41.7949">Comercinho</option>
+<option value="-21.0965,-46.2053">Conceição da Aparecida</option>
+<option value="-22.1581,-45.4566">Conceição das Pedras</option>
+<option value="-19.9176,-48.3843">Conceição das Alagoas</option>
+<option value="-19.9331,-41.6911">Conceição de Ipanema</option>
+<option value="-19.0349,-43.4224">Conceição do Mato Dentro</option>
+<option value="-19.7476,-44.8972">Conceição do Pará</option>
+<option value="-21.8783,-45.0874">Conceição do Rio Verde</option>
+<option value="-22.4083,-45.8">Conceição dos Ouros</option>
+<option value="-15.2987,-44.4129">Cônego Marinho</option>
+<option value="-19.6287,-43.9935">Confins</option>
+<option value="-22.1492,-46.0434">Congonhal</option>
+<option value="-20.4963,-43.8514">Congonhas</option>
+<option value="-18.8025,-43.6771">Congonhas do Norte</option>
+<option value="-19.9367,-47.5449">Conquista</option>
+<option value="-20.6639,-43.785">Conselheiro Lafaiete</option>
+<option value="-19.1794,-41.4739">Conselheiro Pena</option>
+<option value="-22.5498,-45.9258">Consolação</option>
+<option value="-19.9326,-44.0543">Contagem</option>
+<option value="-21.1862,-45.437">Coqueiral</option>
+<option value="-16.6845,-44.3639">Coração de Jesus</option>
+<option value="-19.1229,-44.3228">Cordisburgo</option>
+<option value="-21.7896,-45.7003">Cordislândia</option>
+<option value="-18.3694,-44.4546">Corinto</option>
+<option value="-18.616,-42.2795">Coroaci</option>
+<option value="-18.4738,-47.1937">Coromandel</option>
+<option value="-19.5184,-42.6279">Coronel Fabriciano</option>
+<option value="-16.6153,-42.1843">Coronel Murta</option>
+<option value="-21.5902,-43.2564">Coronel Pacheco</option>
+<option value="-21.0282,-44.221">Coronel Xavier Chaves</option>
+<option value="-19.8246,-45.9045">Córrego Danta</option>
+<option value="-22.6274,-46.0245">Córrego do Bom Jesus</option>
+<option value="-20.4479,-45.5621">Córrego Fundo</option>
+<option value="-19.8366,-42.3992">Córrego Novo</option>
+<option value="-18.0732,-43.4652">Couto de Magalhães de Minas</option>
+<option value="-17.2386,-40.9187">Crisólita</option>
+<option value="-20.8738,-45.5171">Cristais</option>
+<option value="-16.7165,-42.8575">Cristália</option>
+<option value="-20.8329,-43.8169">Cristiano Otoni</option>
+<option value="-22.2085,-45.2677">Cristina</option>
+<option value="-20.3928,-44.3338">Crucilândia</option>
+<option value="-18.9461,-46.6728">Cruzeiro da Fortaleza</option>
+<option value="-21.8405,-44.8071">Cruzília</option>
+<option value="-18.9653,-41.099">Cuparaque</option>
+<option value="-15.9332,-41.856">Curral de Dentro</option>
+<option value="-18.7532,-44.4306">Curvelo</option>
+<option value="-18.4482,-43.6595">Datas</option>
+<option value="-22.5041,-45.2796">Delfim Moreira</option>
+<option value="-20.3472,-46.8459">Delfinópolis</option>
+<option value="-19.9741,-47.7746">Delta</option>
+<option value="-21.4605,-42.9621">Descoberto</option>
+<option value="-20.6655,-44.3338">Desterro de Entre Rios</option>
+<option value="-21.1435,-43.5182">Desterro do Melo</option>
+<option value="-18.2418,-43.6035">Diamantina</option>
+<option value="-20.4884,-43.1956">Diogo de Vasconcelos</option>
+<option value="-19.843,-42.777">Dionísio</option>
+<option value="-20.9922,-43.0006">Divinésia</option>
+<option value="-20.6139,-42.1442">Divino</option>
+<option value="-18.776,-41.4784">Divino das Laranjeiras</option>
+<option value="-18.8053,-42.6218">Divinolândia de Minas</option>
+<option value="-20.1451,-44.8916">Divinópolis</option>
+<option value="-15.7225,-41.3466">Divisa Alegre</option>
+<option value="-21.5096,-46.1908">Divisa Nova</option>
+<option value="-15.7258,-41">Divisópolis</option>
+<option value="-16.6521,-46.2652">Dom Bosco</option>
+<option value="-19.3695,-42.1142">Dom Cavati</option>
+<option value="-18.9615,-43.2547">Dom Joaquim</option>
+<option value="-20.1632,-42.963">Dom Silvério</option>
+<option value="-22.2516,-45.1647">Dom Viçoso</option>
+<option value="-21.3195,-42.8074">Dona Eusébia</option>
+<option value="-21.1144,-44.0211">Dores de Campos</option>
+<option value="-19.0521,-42.9257">Dores de Guanhães</option>
+<option value="-19.4646,-45.6001">Dores do Indaiá</option>
+<option value="-20.979,-43.1838">Dores do Turvo</option>
+<option value="-20.2873,-45.9011">Doresópolis</option>
+<option value="-18.4341,-47.6085">Douradoquara</option>
+<option value="-20.2063,-41.7981">Durandé</option>
+<option value="-21.6093,-45.5695">Elói Mendes</option>
+<option value="-19.207,-42.0507">Engenheiro Caldas</option>
+<option value="-17.2836,-43.9473">Engenheiro Navarro</option>
+<option value="-19.6223,-42.2309">Entre Folhas</option>
+<option value="-20.6711,-44.0658">Entre Rios de Minas</option>
+<option value="-20.8407,-42.6548">Ervália</option>
+<option value="-19.763,-44.314">Esmeraldas</option>
+<option value="-20.6512,-41.9123">Espera Feliz</option>
+<option value="-14.9254,-42.8094">Espinosa</option>
+<option value="-22.0458,-45.9552">Espírito Santo do Dourado</option>
+<option value="-22.4582,-46.0194">Estiva</option>
+<option value="-21.7417,-42.4578">Estrela Dalva</option>
+<option value="-19.5188,-45.79">Estrela do Indaiá</option>
+<option value="-18.7404,-47.696">Estrela do Sul</option>
+<option value="-21.1006,-42.1882">Eugenópolis</option>
+<option value="-21.5503,-43.5072">Ewbank da Câmara</option>
+<option value="-22.8545,-46.3182">Extrema</option>
+<option value="-21.4094,-45.829">Fama</option>
+<option value="-20.8102,-42.0217">Faria Lemos</option>
+<option value="-18.076,-43.2426">Felício dos Santos</option>
+<option value="-17.9993,-43.3817">São Gonçalo do Rio Preto</option>
+<option value="-16.6353,-40.7608">Felisburgo</option>
+<option value="-18.7546,-44.9006">Felixlândia</option>
+<option value="-19.1525,-42.0802">Fernandes Tourinho</option>
+<option value="-19.2348,-43.0196">Ferros</option>
+<option value="-20.7265,-42.2794">Fervedouro</option>
+<option value="-19.8885,-44.4321">Florestal</option>
+<option value="-20.4623,-45.4272">Formiga</option>
+<option value="-14.9532,-46.2323">Formoso</option>
+<option value="-20.8512,-46.7124">Fortaleza de Minas</option>
+<option value="-19.561,-44.447">Fortuna de Minas</option>
+<option value="-16.9887,-42.3572">Francisco Badaró</option>
+<option value="-17.3111,-44.2321">Francisco Dumont</option>
+<option value="-16.4832,-43.49">Francisco Sá</option>
+<option value="-17.96,-42.009">Franciscópolis</option>
+<option value="-18.0714,-41.4329">Frei Gaspar</option>
+<option value="-18.5561,-41.9124">Frei Inocêncio</option>
+<option value="-18.168,-42.766">Frei Lagonegro</option>
+<option value="-20.2832,-49.2011">Fronteira</option>
+<option value="-16.8903,-40.9233">Fronteira dos Vales</option>
+<option value="-16.1172,-42.5235">Fruta de Leite</option>
+<option value="-20.0263,-48.9359">Frutal</option>
+<option value="-19.3676,-44.0626">Funilândia</option>
+<option value="-19.0009,-41.539">Galiléia</option>
+<option value="-15.0838,-43.1203">Gameleiras</option>
+<option value="-16.8485,-43.6923">Glaucilândia</option>
+<option value="-18.9811,-41.2239">Goiabeira</option>
+<option value="-21.5365,-43.196">Goianá</option>
+<option value="-22.655,-45.856">Gonçalves</option>
+<option value="-18.8201,-42.4773">Gonzaga</option>
+<option value="-18.4524,-43.7427">Gouveia</option>
+<option value="-18.8549,-41.9559">Governador Valadares</option>
+<option value="-16.5667,-42.8927">Grão Mogol</option>
+<option value="-18.4968,-47.7226">Grupiara</option>
+<option value="-18.7718,-42.9316">Guanhães</option>
+<option value="-20.7636,-45.9156">Guapé</option>
+<option value="-20.572,-43.0098">Guaraciaba</option>
+<option value="-17.014,-43.673">Guaraciama</option>
+<option value="-21.3014,-46.7967">Guaranésia</option>
+<option value="-21.3568,-43.0331">Guarani</option>
+<option value="-21.7308,-43.0338">Guarará</option>
+<option value="-17.7678,-47.1001">Guarda-Mor</option>
+<option value="-21.3055,-46.7084">Guaxupé</option>
+<option value="-21.1555,-42.7891">Guidoval</option>
+<option value="-18.8447,-46.797">Guimarânia</option>
+<option value="-21.0103,-42.721">Guiricema</option>
+<option value="-19.2147,-49.788">Gurinhatã</option>
+<option value="-22.0649,-45.5457">Heliodora</option>
+<option value="-19.4392,-42.2151">Iapu</option>
+<option value="-21.4335,-43.9643">Ibertioga</option>
+<option value="-19.489,-46.5474">Ibiá</option>
+<option value="-16.8579,-44.9092">Ibiaí</option>
+<option value="-15.667,-44.1641">Ibiracatu</option>
+<option value="-20.4615,-47.1225">Ibiraci</option>
+<option value="-20.0257,-44.0573">Ibirité</option>
+<option value="-22.0609,-46.4372">Ibitiúra de Minas</option>
+<option value="-21.1546,-44.7483">Ibituruna</option>
+<option value="-16.2194,-44.9045">Icaraí de Minas</option>
+<option value="-20.0711,-44.2998">Igarapé</option>
+<option value="-19.9481,-44.7067">Igaratinga</option>
+<option value="-20.1781,-45.7115">Iguatama</option>
+<option value="-21.1743,-44.9236">Ijaci</option>
+<option value="-20.9407,-45.8312">Ilicínea</option>
+<option value="-19.6022,-41.9698">Imbé de Minas</option>
+<option value="-22.314,-46.3268">Inconfidentes</option>
+<option value="-15.4923,-42.1977">Indaiabira</option>
+<option value="-19.0373,-47.9185">Indianópolis</option>
+<option value="-21.4029,-44.9155">Ingaí</option>
+<option value="-19.5473,-42.1176">Inhapim</option>
+<option value="-19.4903,-44.3938">Inhaúma</option>
+<option value="-18.729,-44.361">Inimutaba</option>
+<option value="-19.414,-42.419">Ipaba</option>
+<option value="-19.7996,-41.7168">Ipanema</option>
+<option value="-19.4707,-42.548">Ipatinga</option>
+<option value="-18.6932,-49.944">Ipiaçu</option>
+<option value="-22.1017,-46.1919">Ipuiúna</option>
+<option value="-18.9872,-47.4629">Iraí de Minas</option>
+<option value="-19.6244,-43.2316">Itabira</option>
+<option value="-18.5696,-41.2329">Itabirinha</option>
+<option value="-20.2506,-43.8042">Itabirito</option>
+<option value="-17.0629,-43.3073">Itacambira</option>
+<option value="-15.0963,-44.0983">Itacarambi</option>
+<option value="-20.3952,-44.4879">Itaguara</option>
+<option value="-17.4019,-41.67">Itaipé</option>
+<option value="-22.423,-45.4602">Itajubá</option>
+<option value="-17.8556,-42.8565">Itamarandiba</option>
+<option value="-21.4184,-42.8133">Itamarati de Minas</option>
+<option value="-18.0354,-41.6833">Itambacuri</option>
+<option value="-19.4169,-43.3224">Itambé do Mato Dentro</option>
+<option value="-21.0763,-47.0464">Itamogi</option>
+<option value="-22.2864,-44.8684">Itamonte</option>
+<option value="-22.2947,-44.9386">Itanhandu</option>
+<option value="-19.1741,-41.8634">Itanhomi</option>
+<option value="-16.5575,-41.502">Itaobim</option>
+<option value="-19.9016,-49.3708">Itapagipe</option>
+<option value="-20.4708,-45.1274">Itapecerica</option>
+<option value="-22.767,-46.2244">Itapeva</option>
+<option value="-20.1987,-44.4215">Itatiaiuçu</option>
+<option value="-20.738,-46.7529">Itaú de Minas</option>
+<option value="-20.0823,-44.5805">Itaúna</option>
+<option value="-20.6773,-43.6145">Itaverava</option>
+<option value="-16.6139,-41.7681">Itinga</option>
+<option value="-19.4004,-41.175">Itueta</option>
+<option value="-18.9776,-49.4644">Ituiutaba</option>
+<option value="-21.3175,-44.8727">Itumirim</option>
+<option value="-19.728,-50.197">Iturama</option>
+<option value="-21.3005,-44.6571">Itutinga</option>
+<option value="-19.514,-43.745">Jaboticatubas</option>
+<option value="-16.1432,-40.2953">Jacinto</option>
+<option value="-21.0141,-46.7363">Jacuí</option>
+<option value="-22.2864,-46.617">Jacutinga</option>
+<option value="-19.6481,-42.7511">Jaguaraçu</option>
+<option value="-15.3437,-43.6692">Jaíba</option>
+<option value="-18.4615,-41.8094">Jampruca</option>
+<option value="-15.8027,-43.3135">Janaúba</option>
+<option value="-15.4806,-44.3643">Januária</option>
+<option value="-20.1447,-45.5019">Japaraíba</option>
+<option value="-15.9984,-44.2755">Japonvar</option>
+<option value="-20.5343,-43.9898">Jeceaba</option>
+<option value="-17.0836,-42.2593">Jenipapo de Minas</option>
+<option value="-20.4547,-42.6654">Jequeri</option>
+<option value="-17.2331,-44.4375">Jequitaí</option>
+<option value="-19.236,-44.028">Jequitibá</option>
+<option value="-16.4379,-41.0121">Jequitinhonha</option>
+<option value="-21.9891,-45.2915">Jesuânia</option>
+<option value="-16.6527,-41.0232">Joaíma</option>
+<option value="-19.1734,-42.6778">Joanésia</option>
+<option value="-19.8131,-43.1738">João Monlevade</option>
+<option value="-17.7418,-46.176">João Pinheiro</option>
+<option value="-17.758,-44.172">Joaquim Felício</option>
+<option value="-15.8987,-40.179">Jordânia</option>
+<option value="-16.9086,-42.6046">José Gonçalves de Minas</option>
+<option value="-18.22,-42.495">José Raydan</option>
+<option value="-16.5422,-42.5154">Josenópolis</option>
+<option value="-19.6881,-43.5834">Nova União</option>
+<option value="-19.9558,-44.3413">Juatuba</option>
+<option value="-21.76,-43.3401">Juiz de Fora</option>
+<option value="-16.8478,-43.5868">Juramento</option>
+<option value="-21.2498,-46.5739">Juruaia</option>
+<option value="-14.2667,-44.16">Juvenília</option>
+<option value="-17.6284,-41.7492">Ladainha</option>
+<option value="-18.1764,-46.8067">Lagamar</option>
+<option value="-20.0242,-45.5405">Lagoa da Prata</option>
+<option value="-16.9825,-44.5791">Lagoa dos Patos</option>
+<option value="-20.9143,-44.0801">Lagoa Dourada</option>
+<option value="-18.772,-46.4016">Lagoa Formosa</option>
+<option value="-17.8436,-46.5187">Lagoa Grande</option>
+<option value="-19.627,-43.89">Lagoa Santa</option>
+<option value="-20.1544,-41.6232">Lajinha</option>
+<option value="-21.9676,-45.3502">Lambari</option>
+<option value="-20.7905,-43.471">Lamim</option>
+<option value="-21.372,-42.4735">Laranjal</option>
+<option value="-17.887,-44.578">Lassance</option>
+<option value="-21.2485,-45.0013">Lavras</option>
+<option value="-19.7163,-45.0245">Leandro Ferreira</option>
+<option value="-17.0814,-42.6919">Leme do Prado</option>
+<option value="-21.5301,-42.6425">Leopoldina</option>
+<option value="-22.028,-44.3211">Liberdade</option>
+<option value="-21.8391,-43.7938">Lima Duarte</option>
+<option value="-19.5517,-50.5819">Limeira do Oeste</option>
+<option value="-15.9018,-44.3064">Lontra</option>
+<option value="-20.4472,-42.098">Luisburgo</option>
+<option value="-16.1171,-44.5857">Luislândia</option>
+<option value="-21.515,-44.9038">Luminárias</option>
+<option value="-19.7916,-45.6798">Luz</option>
+<option value="-17.0727,-40.7248">Machacalis</option>
+<option value="-21.6782,-45.9222">Machado</option>
+<option value="-21.4835,-44.3291">Madre de Deus de Minas</option>
+<option value="-17.8461,-42.0773">Malacacheta</option>
+<option value="-15.0509,-42.9511">Mamonas</option>
+<option value="-14.7533,-43.9394">Manga</option>
+<option value="-20.2577,-42.0283">Manhuaçu</option>
+<option value="-20.3596,-41.9593">Manhumirim</option>
+<option value="-18.7765,-40.9877">Mantena</option>
+<option value="-19.516,-44.676">Maravilhas</option>
+<option value="-21.8712,-43.0066">Mar de Espanha</option>
+<option value="-22.3049,-45.3777">Maria da Fé</option>
+<option value="-20.377,-43.4144">Mariana</option>
+<option value="-18.5084,-42.0826">Marilac</option>
+<option value="-20.0586,-44.1887">Mário Campos</option>
+<option value="-21.6984,-42.955">Maripá de Minas</option>
+<option value="-19.7101,-42.7331">Marliéria</option>
+<option value="-22.4475,-45.1649">Marmelópolis</option>
+<option value="-19.3211,-45.2384">Martinho Campos</option>
+<option value="-20.255,-41.8789">Martins Soares</option>
+<option value="-15.6871,-40.7381">Mata Verde</option>
+<option value="-18.4704,-43.0583">Materlândia</option>
+<option value="-19.986,-44.428">Mateus Leme</option>
+<option value="-21.8694,-43.3138">Matias Barbosa</option>
+<option value="-14.8529,-43.9203">Matias Cardoso</option>
+<option value="-20.2877,-42.3405">Matipó</option>
+<option value="-15.3949,-42.8603">Mato Verde</option>
+<option value="-19.5548,-44.0872">Matozinhos</option>
+<option value="-19.2218,-45.9684">Matutina</option>
+<option value="-19.9945,-46.2251">Medeiros</option>
+<option value="-16.225,-41.4731">Medina</option>
+<option value="-18.6636,-41.4056">Mendes Pimentel</option>
+<option value="-21.1981,-43.334">Mercês</option>
+<option value="-19.2245,-42.6082">Mesquita</option>
+<option value="-17.2161,-42.5888">Minas Novas</option>
+<option value="-21.6802,-44.6055">Minduri</option>
+<option value="-16.252,-44.1626">Mirabela</option>
+<option value="-20.8904,-42.3462">Miradouro</option>
+<option value="-21.2026,-42.6126">Miraí</option>
+<option value="-14.7431,-44.4177">Miravânia</option>
+<option value="-20.3403,-44.0513">Moeda</option>
+<option value="-19.8416,-45.4145">Moema</option>
+<option value="-18.3249,-44.1183">Monjolos</option>
+<option value="-21.7584,-45.5394">Monsenhor Paulo</option>
+<option value="-14.4238,-44.3699">Montalvânia</option>
+<option value="-18.871,-48.8809">Monte Alegre de Minas</option>
+<option value="-15.1518,-42.8721">Monte Azul</option>
+<option value="-21.3276,-46.3639">Monte Belo</option>
+<option value="-18.7307,-47.4916">Monte Carmelo</option>
+<option value="-16.8681,-41.2547">Monte Formoso</option>
+<option value="-21.1878,-46.9757">Monte Santo de Minas</option>
+<option value="-16.7286,-43.8582">Montes Claros</option>
+<option value="-22.434,-46.5734">Monte Sião</option>
+<option value="-15.1753,-42.5009">Montezuma</option>
+<option value="-18.6002,-45.3588">Morada Nova de Minas</option>
+<option value="-18.547,-44.603">Morro da Garça</option>
+<option value="-19.2188,-43.3812">Morro do Pilar</option>
+<option value="-22.6096,-46.3624">Munhoz</option>
+<option value="-21.1304,-42.3697">Muriaé</option>
+<option value="-19.8126,-41.441">Mutum</option>
+<option value="-21.3696,-46.5217">Muzambinho</option>
+<option value="-18.4549,-42.2485">Nacip Raydan</option>
+<option value="-17.8486,-40.3536">Nanuque</option>
+<option value="-19.2258,-42.3302">Naque</option>
+<option value="-16.5059,-46.4941">Natalândia</option>
+<option value="-22.1162,-45.5127">Natércia</option>
+<option value="-21.2173,-44.6142">Nazareno</option>
+<option value="-21.2329,-45.2353">Nepomuceno</option>
+<option value="-15.32,-41.7556">Ninheira</option>
+<option value="-18.493,-41.111">Nova Belém</option>
+<option value="-19.763,-43.0313">Nova Era</option>
+<option value="-19.9762,-43.8512">Nova Lima</option>
+<option value="-18.4422,-41.4987">Nova Módica</option>
+<option value="-19.1673,-47.674">Nova Ponte</option>
+<option value="-15.8003,-43.2981">Nova Porteirinha</option>
+<option value="-21.1291,-46.4161">Nova Resende</option>
+<option value="-19.8718,-44.985">Nova Serrana</option>
+<option value="-17.4659,-41.883">Novo Cruzeiro</option>
+<option value="-17.4094,-41.2197">Novo Oriente de Minas</option>
+<option value="-16.0167,-42.4048">Novorizonte</option>
+<option value="-21.8603,-43.9359">Olaria</option>
+<option value="-17.3964,-43.5708">Olhos-d"Água</option>
+<option value="-22.069,-45.2661">Olímpio Noronha</option>
+<option value="-20.6987,-44.8294">Oliveira</option>
+<option value="-21.3405,-43.4503">Oliveira Fortes</option>
+<option value="-19.728,-44.8061">Onça de Pitangui</option>
+<option value="-20.4302,-42.7981">Oratórios</option>
+<option value="-20.5146,-42.1995">Orizânia</option>
+<option value="-20.5268,-43.6966">Ouro Branco</option>
+<option value="-22.2783,-46.372">Ouro Fino</option>
+<option value="-20.38,-43.5124">Ouro Preto</option>
+<option value="-18.0724,-41.2738">Ouro Verde de Minas</option>
+<option value="-16.3644,-42.5158">Padre Carvalho</option>
+<option value="-17.0763,-41.4824">Padre Paraíso</option>
+<option value="-18.9047,-45.536">Paineiras</option>
+<option value="-20.3709,-45.6631">Pains</option>
+<option value="-15.5314,-43.0679">Pai Pedro</option>
+<option value="-21.2918,-43.4091">Paiva</option>
+<option value="-21.3753,-42.3126">Palma</option>
+<option value="-16.7368,-40.4299">Palmópolis</option>
+<option value="-19.4424,-44.7472">Papagaios</option>
+<option value="-17.2256,-46.8714">Paracatu</option>
+<option value="-19.8539,-44.6117">Pará de Minas</option>
+<option value="-21.547,-45.7378">Paraguaçu</option>
+<option value="-22.5544,-45.7807">Paraisópolis</option>
+<option value="-19.2737,-44.4047">Paraopeba</option>
+<option value="-19.3514,-43.1387">Passabém</option>
+<option value="-22.3876,-44.9713">Passa Quatro</option>
+<option value="-20.6544,-44.493">Passa Tempo</option>
+<option value="-22.2071,-44.2369">Passa-Vinte</option>
+<option value="-20.7197,-46.6094">Passos</option>
+<option value="-16.0796,-44.0812">Patis</option>
+<option value="-18.5782,-46.5134">Patos de Minas</option>
+<option value="-18.9383,-46.9938">Patrocínio</option>
+<option value="-21.1549,-42.2129">Patrocínio do Muriaé</option>
+<option value="-20.8759,-42.9755">Paula Cândido</option>
+<option value="-18.4317,-42.8726">Paulistas</option>
+<option value="-17.4272,-41.0038">Pavão</option>
+<option value="-18.5446,-42.5586">Peçanha</option>
+<option value="-16.0091,-41.2913">Pedra Azul</option>
+<option value="-20.5224,-42.3308">Pedra Bonita</option>
+<option value="-20.5973,-42.7127">Pedra do Anta</option>
+<option value="-20.2568,-45.211">Pedra do Indaiá</option>
+<option value="-20.8271,-42.1519">Pedra Dourada</option>
+<option value="-22.2391,-45.4658">Pedralva</option>
+<option value="-15.6037,-44.3914">Pedras de Maria da Cruz</option>
+<option value="-19.2282,-47.4643">Pedrinópolis</option>
+<option value="-19.618,-44.043">Pedro Leopoldo</option>
+<option value="-21.7081,-43.7433">Pedro Teixeira</option>
+<option value="-21.8346,-43.1149">Pequeri</option>
+<option value="-19.6288,-44.6608">Pequi</option>
+<option value="-19.9521,-45.0858">Perdigão</option>
+<option value="-19.3492,-47.2934">Perdizes</option>
+<option value="-21.0937,-45.09">Perdões</option>
+<option value="-19.1563,-42.241">Periquito</option>
+<option value="-18.3574,-41.6009">Pescador</option>
+<option value="-21.5101,-43.3134">Piau</option>
+<option value="-19.7598,-42.0759">Piedade de Caratinga</option>
+<option value="-20.2443,-42.7382">Piedade de Ponte Nova</option>
+<option value="-21.4695,-44.1942">Piedade do Rio Grande</option>
+<option value="-20.472,-44.2247">Piedade dos Gerais</option>
+<option value="-20.4832,-45.8053">Pimenta</option>
+<option value="-19.7278,-42.4081">Pingo-d"Água</option>
+<option value="-16.0576,-45.1455">Pintópolis</option>
+<option value="-20.5093,-44.4787">Piracema</option>
+<option value="-19.9097,-48.7031">Pirajuba</option>
+<option value="-20.6839,-43.2971">Piranga</option>
+<option value="-22.5254,-45.4949">Piranguçu</option>
+<option value="-22.3954,-45.5328">Piranguinho</option>
+<option value="-21.6559,-42.3438">Pirapetinga</option>
+<option value="-17.3396,-44.9344">Pirapora</option>
+<option value="-21.283,-43.0176">Piraúba</option>
+<option value="-19.683,-44.89">Pitangui</option>
+<option value="-20.4767,-45.9593">Piumhi</option>
+<option value="-20.138,-48.7019">Planura</option>
+<option value="-21.7805,-45.9661">Poço Fundo</option>
+<option value="-21.7848,-46.5687">Poços de Caldas</option>
+<option value="-19.6213,-41.6338">Pocrane</option>
+<option value="-19.2261,-45.0145">Pompéu</option>
+<option value="-20.4116,-42.8982">Ponte Nova</option>
+<option value="-16.6318,-45.0641">Ponto Chique</option>
+<option value="-16.7502,-41.5059">Ponto dos Volantes</option>
+<option value="-15.7409,-43.0284">Porteirinha</option>
+<option value="-20.6647,-43.0838">Porto Firme</option>
+<option value="-17.8082,-41.7864">Poté</option>
+<option value="-22.2271,-45.9393">Pouso Alegre</option>
+<option value="-22.1968,-44.9752">Pouso Alto</option>
+<option value="-21.0602,-44.0782">Prados</option>
+<option value="-19.3091,-48.928">Prata</option>
+<option value="-20.7415,-46.8628">Pratápolis</option>
+<option value="-19.7526,-46.3833">Pratinha</option>
+<option value="-20.766,-43.1899">Presidente Bernardes</option>
+<option value="-18.637,-44.058">Presidente Juscelino</option>
+<option value="-18.614,-43.562">Presidente Kubitschek</option>
+<option value="-18.4109,-46.4169">Presidente Olegário</option>
+<option value="-20.4213,-41.9673">Alto Jequitibá</option>
+<option value="-19.4747,-44.1594">Prudente de Morais</option>
+<option value="-19.2708,-45.5573">Quartel Geral</option>
+<option value="-20.742,-43.8855">Queluzito</option>
+<option value="-19.967,-43.804">Raposos</option>
+<option value="-20.1066,-42.4506">Raul Soares</option>
+<option value="-21.5294,-42.468">Recreio</option>
+<option value="-20.2406,-41.9852">Reduto</option>
+<option value="-20.9175,-44.2411">Resende Costa</option>
+<option value="-19.3199,-41.2466">Resplendor</option>
+<option value="-21.0647,-43.7602">Ressaquinha</option>
+<option value="-16.2203,-45.9993">Riachinho</option>
+<option value="-16.0096,-43.0492">Riacho dos Machados</option>
+<option value="-19.7625,-44.0848">Ribeirão das Neves</option>
+<option value="-21.1883,-45.0641">Ribeirão Vermelho</option>
+<option value="-20.088,-43.7882">Rio Acima</option>
+<option value="-20.229,-42.6466">Rio Casca</option>
+<option value="-20.2416,-42.8999">Rio Doce</option>
+<option value="-16.6061,-40.5717">Rio do Prado</option>
+<option value="-20.8555,-43.4724">Rio Espera</option>
+<option value="-20.267,-44.3072">Rio Manso</option>
+<option value="-21.4654,-43.1172">Rio Novo</option>
+<option value="-19.1909,-46.2459">Rio Paranaíba</option>
+<option value="-15.6165,-42.5409">Rio Pardo de Minas</option>
+<option value="-19.929,-43.174">Rio Piracicaba</option>
+<option value="-21.2716,-43.17">Rio Pomba</option>
+<option value="-22.0866,-43.8297">Rio Preto</option>
+<option value="-18.294,-43.009">Rio Vermelho</option>
+<option value="-21.028,-44.3208">Ritápolis</option>
+<option value="-21.6289,-43.0169">Rochedo de Minas</option>
+<option value="-21.2039,-42.859">Rodeiro</option>
+<option value="-18.8845,-47.584">Romaria</option>
+<option value="-20.9817,-42.5116">Rosário da Limeira</option>
+<option value="-16.4057,-42.2614">Rubelita</option>
+<option value="-16.378,-40.5401">Rubim</option>
+<option value="-19.8845,-43.8267">Sabará</option>
+<option value="-18.6658,-43.0756">Sabinópolis</option>
+<option value="-19.87,-47.4436">Sacramento</option>
+<option value="-16.1691,-42.2959">Salinas</option>
+<option value="-16.0068,-39.9394">Salto da Divisa</option>
+<option value="-19.9608,-43.4105">Santa Bárbara</option>
+<option value="-19.978,-42.14">Santa Bárbara do Leste</option>
+<option value="-21.9597,-43.7031">Santa Bárbara do Monte Verde</option>
+<option value="-21.2436,-43.5611">Santa Bárbara do Tugúrio</option>
+<option value="-21.1246,-44.2206">Santa Cruz de Minas</option>
+<option value="-16.0976,-41.7486">Santa Cruz de Salinas</option>
+<option value="-20.2377,-42.8173">Santa Cruz do Escalvado</option>
+<option value="-18.8239,-42.4392">Santa Efigênia de Minas</option>
+<option value="-16.6937,-45.4148">Santa Fé de Minas</option>
+<option value="-16.9373,-40.6842">Santa Helena de Minas</option>
+<option value="-19.311,-47.5294">Santa Juliana</option>
+<option value="-19.7553,-43.85">Santa Luzia</option>
+<option value="-20.3843,-42.2523">Santa Margarida</option>
+<option value="-19.449,-43.113">Santa Maria de Itabira</option>
+<option value="-16.2484,-40.1515">Santa Maria do Salto</option>
+<option value="-18.1889,-42.4194">Santa Maria do Suaçuí</option>
+<option value="-21.2454,-45.5009">Santana da Vargem</option>
+<option value="-21.2898,-42.5527">Santana de Cataguases</option>
+<option value="-18.9967,-44.0413">Santana de Pirapama</option>
+<option value="-21.9517,-43.1587">Santana do Deserto</option>
+<option value="-21.5988,-44.1054">Santana do Garambéu</option>
+<option value="-20.9012,-45.1289">Santana do Jacaré</option>
+<option value="-20.1036,-41.9282">Santana do Manhuaçu</option>
+<option value="-19.3665,-42.5449">Santana do Paraíso</option>
+<option value="-19.169,-43.714">Santana do Riacho</option>
+<option value="-20.7873,-43.6953">Santana dos Montes</option>
+<option value="-22.0297,-46.3389">Santa Rita de Caldas</option>
+<option value="-22.1479,-44.0981">Santa Rita de Jacutinga</option>
+<option value="-19.8732,-42.1326">Santa Rita de Minas</option>
+<option value="-21.5663,-43.9167">Santa Rita de Ibitipoca</option>
+<option value="-19.3581,-41.3824">Santa Rita do Itueto</option>
+<option value="-22.2466,-45.7038">Santa Rita do Sapucaí</option>
+<option value="-19.5263,-45.9663">Santa Rosa da Serra</option>
+<option value="-18.8419,-50.1212">Santa Vitória</option>
+<option value="-20.9435,-44.918">Santo Antônio do Amparo</option>
+<option value="-21.7611,-42.8118">Santo Antônio do Aventureiro</option>
+<option value="-20.3189,-42.6051">Santo Antônio do Grama</option>
+<option value="-18.469,-43.3037">Santo Antônio do Itambé</option>
+<option value="-16.5337,-40.1821">Santo Antônio do Jacinto</option>
+<option value="-20.0855,-45.2951">Santo Antônio do Monte</option>
+<option value="-15.3421,-42.6219">Santo Antônio do Retiro</option>
+<option value="-19.228,-43.254">Santo Antônio do Rio Abaixo</option>
+<option value="-18.2972,-44.2232">Santo Hipólito</option>
+<option value="-21.4639,-43.5502">Santos Dumont</option>
+<option value="-21.5844,-45.0703">São Bento Abade</option>
+<option value="-20.6246,-43.9518">São Brás do Suaçuí</option>
+<option value="-19.5267,-42.0121">São Domingos das Dores</option>
+<option value="-19.8683,-42.9714">São Domingos do Prata</option>
+<option value="-18.5964,-41.4892">São Félix de Minas</option>
+<option value="-15.9519,-44.8597">São Francisco</option>
+<option value="-20.7041,-44.9841">São Francisco de Paula</option>
+<option value="-19.8616,-49.7731">São Francisco de Sales</option>
+<option value="-20.7928,-42.2676">São Francisco do Glória</option>
+<option value="-20.9257,-42.8367">São Geraldo</option>
+<option value="-18.8443,-42.2886">São Geraldo da Piedade</option>
+<option value="-18.9101,-41.3633">São Geraldo do Baixio</option>
+<option value="-18.3403,-45.8335">São Gonçalo do Abaeté</option>
+<option value="-19.9826,-44.8597">São Gonçalo do Pará</option>
+<option value="-19.8226,-43.3664">São Gonçalo do Rio Abaixo</option>
+<option value="-21.8937,-45.5897">São Gonçalo do Sapucaí</option>
+<option value="-19.3092,-46.0469">São Gotardo</option>
+<option value="-20.6355,-46.5084">São João Batista do Glória</option>
+<option value="-16.8508,-44.3461">São João da Lagoa</option>
+<option value="-21.9285,-45.9301">São João da Mata</option>
+<option value="-15.9287,-44.0058">São João da Ponte</option>
+<option value="-14.8815,-44.0802">São João das Missões</option>
+<option value="-21.1315,-44.253">São João del Rei</option>
+<option value="-20.3938,-42.1536">São João do Manhuaçu</option>
+<option value="-18.7235,-41.1632">São João do Manteninha</option>
+<option value="-19.339,-42.158">São João do Oriente</option>
+<option value="-16.5326,-44.5302">São João do Pacuí</option>
+<option value="-15.3173,-42.0217">São João do Paraíso</option>
+<option value="-18.5485,-42.7659">São João Evangelista</option>
+<option value="-21.5386,-43.0072">São João Nepomuceno</option>
+<option value="-20.0484,-44.2753">São Joaquim de Bicas</option>
+<option value="-20.7183,-46.3134">São José da Barra</option>
+<option value="-19.6976,-43.959">São José da Lapa</option>
+<option value="-18.3249,-42.1461">São José da Safira</option>
+<option value="-19.701,-44.5563">São José da Varginha</option>
+<option value="-22.3247,-45.5262">São José do Alegre</option>
+<option value="-18.4798,-41.391">São José do Divino</option>
+<option value="-19.9219,-42.7039">São José do Goiabal</option>
+<option value="-18.2744,-42.6711">São José do Jacuri</option>
+<option value="-20.0062,-41.7489">São José do Mantimento</option>
+<option value="-22.1171,-45.051">São Lourenço</option>
+<option value="-20.7071,-42.7178">São Miguel do Anta</option>
+<option value="-21.1314,-46.6127">São Pedro da União</option>
+<option value="-20.1737,-42.5254">São Pedro dos Ferros</option>
+<option value="-18.366,-42.603">São Pedro do Suaçuí</option>
+<option value="-16.3671,-45.0686">São Romão</option>
+<option value="-20.2495,-46.3643">São Roque de Minas</option>
+<option value="-22.1588,-45.755">São Sebastião da Bela Vista</option>
+<option value="-21.0741,-42.635">São Sebastião da Vargem Alegre</option>
+<option value="-19.5001,-41.9796">São Sebastião do Anta</option>
+<option value="-18.0892,-42.5698">São Sebastião do Maranhão</option>
+<option value="-20.2763,-45.0067">São Sebastião do Oeste</option>
+<option value="-20.9172,-46.9841">São Sebastião do Paraíso</option>
+<option value="-19.293,-43.1749">São Sebastião do Rio Preto</option>
+<option value="-22.2188,-44.9765">São Sebastião do Rio Verde</option>
+<option value="-20.9079,-44.5102">São Tiago</option>
+<option value="-20.7795,-47.0966">São Tomás de Aquino</option>
+<option value="-21.7263,-44.9852">São Thomé das Letras</option>
+<option value="-21.7047,-44.4434">São Vicente de Minas</option>
+<option value="-22.7414,-45.7383">Sapucaí-Mirim</option>
+<option value="-18.7833,-42.3633">Sardoá</option>
+<option value="-20.0371,-44.145">Sarzedo</option>
+<option value="-17.6007,-42.159">Setubinha</option>
+<option value="-20.1013,-42.8487">Sem-Peixe</option>
+<option value="-22.5874,-46.1767">Senador Amaral</option>
+<option value="-21.799,-42.9427">Senador Cortes</option>
+<option value="-20.9162,-43.0908">Senador Firmino</option>
+<option value="-22.1638,-46.1796">Senador José Bento</option>
+<option value="-17.947,-43.225">Senador Modestino Gonçalves</option>
+<option value="-20.7977,-43.3398">Senhora de Oliveira</option>
+<option value="-18.8914,-43.0802">Senhora do Porto</option>
+<option value="-21.0356,-43.5816">Senhora dos Remédios</option>
+<option value="-20.4753,-42.4831">Sericita</option>
+<option value="-21.9138,-44.5183">Seritinga</option>
+<option value="-18.3606,-43.1678">Serra Azul de Minas</option>
+<option value="-19.4381,-45.8">Serra da Saudade</option>
+<option value="-17.7876,-40.2456">Serra dos Aimorés</option>
+<option value="-19.1099,-46.6822">Serra do Salitre</option>
+<option value="-21.5446,-46.0421">Serrania</option>
+<option value="-15.8115,-42.8717">Serranópolis de Minas</option>
+<option value="-21.8862,-44.5129">Serranos</option>
+<option value="-18.5996,-43.3748">Serro</option>
+<option value="-19.4574,-44.2416">Sete Lagoas</option>
+<option value="-21.162,-43.2132">Silveirânia</option>
+<option value="-22.0279,-45.8389">Silvianópolis</option>
+<option value="-21.9644,-43.3092">Simão Pereira</option>
+<option value="-20.1346,-42.0094">Simonésia</option>
+<option value="-19.235,-42.098">Sobrália</option>
+<option value="-22.0559,-45.0468">Soledade de Minas</option>
+<option value="-21.3637,-43.2384">Tabuleiro</option>
+<option value="-15.8111,-42.2263">Taiobeiras</option>
+<option value="-19.7626,-41.6083">Taparuba</option>
+<option value="-19.9231,-46.8222">Tapira</option>
+<option value="-19.888,-46.0204">Tapiraí</option>
+<option value="-19.6657,-43.6926">Taquaraçu de Minas</option>
+<option value="-19.2788,-42.0119">Tarumirim</option>
+<option value="-20.6566,-42.8568">Teixeiras</option>
+<option value="-17.86,-41.5091">Teófilo Otoni</option>
+<option value="-19.5764,-42.648">Timóteo</option>
+<option value="-21.1107,-44.1748">Tiradentes</option>
+<option value="-19.0042,-45.963">Tiros</option>
+<option value="-21.1779,-43.0131">Tocantins</option>
+<option value="-22.3703,-46.0975">Tocos do Moji</option>
+<option value="-22.7426,-46.3732">Toledo</option>
+<option value="-20.9091,-42.0231">Tombos</option>
+<option value="-21.6926,-45.2515">Três Corações</option>
+<option value="-18.2022,-45.2285">Três Marias</option>
+<option value="-21.3699,-45.5113">Três Pontas</option>
+<option value="-18.9849,-41.653">Tumiritinga</option>
+<option value="-18.593,-48.705">Tupaciguara</option>
+<option value="-17.2833,-42.7288">Turmalina</option>
+<option value="-21.8738,-45.7863">Turvolândia</option>
+<option value="-21.1209,-42.9363">Ubá</option>
+<option value="-16.289,-44.7786">Ubaí</option>
+<option value="-19.6355,-42.1063">Ubaporanga</option>
+<option value="-19.7477,-47.9385">Uberaba</option>
+<option value="-18.9146,-48.2753">Uberlândia</option>
+<option value="-17.2553,-40.5783">Umburatiba</option>
+<option value="-16.3597,-46.9025">Unaí</option>
+<option value="-19.53,-50.3359">União de Minas</option>
+<option value="-16.0603,-46.2565">Uruana de Minas</option>
+<option value="-20.3526,-42.7374">Urucânia</option>
+<option value="-16.1245,-45.741">Urucuia</option>
+<option value="-19.5992,-42.2953">Vargem Alegre</option>
+<option value="-20.3337,-46.3692">Vargem Bonita</option>
+<option value="-15.4016,-42.3096">Vargem Grande do Rio Pardo</option>
+<option value="-21.5561,-45.4368">Varginha</option>
+<option value="-18.3786,-46.031">Varjão de Minas</option>
+<option value="-17.598,-44.731">Várzea da Palma</option>
+<option value="-15.7039,-44.0297">Varzelândia</option>
+<option value="-17.9902,-46.9008">Vazante</option>
+<option value="-15.5927,-43.607">Verdelândia</option>
+<option value="-17.3978,-42.7311">Veredinha</option>
+<option value="-19.663,-48.308">Veríssimo</option>
+<option value="-20.0411,-42.2692">Vermelho Novo</option>
+<option value="-19.6888,-43.9243">Vespasiano</option>
+<option value="-20.7564,-42.8745">Viçosa</option>
+<option value="-20.8675,-42.2404">Vieiras</option>
+<option value="-18.5905,-41.9169">Mathias Lobato</option>
+<option value="-16.8075,-42.3434">Virgem da Lapa</option>
+<option value="-22.3269,-45.0968">Virgínia</option>
+<option value="-18.8159,-42.7019">Virginópolis</option>
+<option value="-18.4749,-42.308">Virgolândia</option>
+<option value="-21.0132,-42.8365">Visconde do Rio Branco</option>
+<option value="-21.7676,-42.5379">Volta Grande</option>
+<option value="-22.5373,-45.363">Wenceslau Braz</option>
+
+            <!-- Adicione mais opções conforme necessário -->
+        </select>
+        <br>
+        <button id="consultar">Consultar</button>
+        <div id="weatherData" class="data">
+            Selecione um município e clique em "Consultar" para carregar os dados de precipitação.
+        </div>
+    </main>
+
+    <script>
+        const apiKey = "a1f9cec545b31ac00a4a946f605e8545"; // Substitua pela sua chave de API OpenWeather
+
+        const municipioSelect = document.getElementById("municipio");
+        const consultarButton = document.getElementById("consultar");
+
+        // Consultar dados ao clicar no botão
+        consultarButton.addEventListener("click", async () => {
+            const [lat, lon] = municipioSelect.value.split(",");
+            if (!lat || !lon) {
+                document.getElementById("weatherData").innerHTML = "Selecione um município válido.";
+                return;
+            }
+
+            const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Erro ao buscar dados: ${response.status}`);
+                }
+                const data = await response.json();
+                displayPrecipitationData(data.list.slice(0, 3));
+            } catch (error) {
+                document.getElementById("weatherData").innerHTML = `Erro: ${error.message}`;
+            }
+        });
+
+        function displayPrecipitationData(hourlyData) {
+            const container = document.getElementById("weatherData");
+            container.innerHTML = "<h2>Dados de Precipitação:</h2>";
+
+            hourlyData.forEach((hour) => {
+                const precipitation = hour.rain?.["3h"] || 0; // Precipitação em mm
+                const time = new Date(hour.dt * 1000).toLocaleTimeString();
+
+                const dataBlock = document.createElement("div");
+                dataBlock.innerHTML = `<strong>${time}:</strong> ${precipitation} mm`;
+                container.appendChild(dataBlock);
+            });
+        }
+    </script>
+</body>
+</html>
